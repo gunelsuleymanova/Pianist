@@ -64,9 +64,11 @@ public class GameService {
         progress.setScoreEarned(scoreChange);
         progress.setAttempts((progress.getAttempts() == null ? 0 : progress.getAttempts()) + 1);
 
-        progressService.updateStreak(progress);
+        if(completed) {
+            progressService.updateStreak(progress);
+        }
 
-        progress.setLastPracticed(LocalDateTime.now());
+
         userProgressRepository.save(progress);
     }
 }

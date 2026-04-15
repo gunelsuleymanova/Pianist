@@ -33,6 +33,7 @@ public class ProgressService {
 
         if (lastPracticed == null) {
             progress.setStreakDays(1);
+            progress.setLastPracticed(LocalDateTime.now());
             return;
         }
 
@@ -42,8 +43,10 @@ public class ProgressService {
         if (lastDate.equals(today.minusDays(1))) {
             progress.setStreakDays((progress.getStreakDays() == null ? 0 : progress.getStreakDays()) + 1);
         } else if (lastDate.equals(today)) {
+            progress.setLastPracticed(LocalDateTime.now());
             // Bu gün artıq edilib — dəyişmə
         } else {
+            progress.setLastPracticed(LocalDateTime.now());
             progress.setStreakDays(1);
         }
     }
